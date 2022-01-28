@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class Category(models.Model):
-    slug = models.SlugField(primary_key=True)
+    slug = models.SlugField(primary_key=True, max_length=23)
     title = models.CharField(max_length=55, unique=True)
     image =models.ImageField(upload_to='category_images',
                              null=True, blank=True)
@@ -20,6 +20,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ('name',)
 
 
     name = models.CharField(max_length=155)
